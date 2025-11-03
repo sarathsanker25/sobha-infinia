@@ -11,12 +11,14 @@
             font-family: 'Inter', sans-serif;
             background-color: #f7f7f7;
         }
-        /* Custom background style for the hero section using an accessible uploaded image */
+        /* Custom background style for the hero section */
         .hero-background {
-            /* *** PLACEHOLDER INSTRUCTION: Replace the URL below with your actual direct image link. ***
-               Example format for a direct link: url('https://your-username.github.io/repo/assets/hero-image.jpg'); 
+            /* ===================================================================
+               *** HERO BACKGROUND IMAGE PLACEMENT ***
+               Replace the URL below with your raw GitHub image link or uploaded reference.
+               ===================================================================
             */
-            background-image: url('https://github.com/sarathsanker25/sobha-insignia-landing-page/blob/30b05dfbb0e45d7b6f925865a7e6ad938a35534b/assets/SOBHA%20Infinia_BROCHURE_Web%20(1)-16.png'); 
+            background-image: url('uploaded:https://raw.githubusercontent.com/sarathsanker25/sobha-insignia-landing-page/refs/heads/main/assets/SOBHA%20Infinia_BROCHURE_Web%20(1)-11.png'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -39,6 +41,19 @@
         /* Scroll to top button visibility */
         .scroll-top-button {
             transition: opacity 0.3s ease;
+        }
+        /* Aspect ratio container for the YouTube iframe (16:9) */
+        .aspect-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .aspect-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -118,44 +133,52 @@
             </div>
         </section>
         
-        <!-- Project Gallery & Video Walkthrough Section - Placeholder Ready -->
+        <!-- Project Gallery & Video Walkthrough Section -->
         <section id="gallery" class="bg-white py-16 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl font-extrabold text-gray-900 text-center mb-12">Virtual Walkthrough & Project Gallery</h2>
                 
-                <!-- Video Player Placeholder -->
-                <div class="mb-12 shadow-2xl rounded-xl overflow-hidden aspect-video">
-                    <video 
-                        controls 
-                        poster="https://placehold.co/1280x720/FBBF24/000000?text=Project+Walkthrough+Video"
-                        class="w-full h-full object-cover bg-gray-300"
-                    >
-                        <!-- 
-                            *** PLACEHOLDER INSTRUCTION: Replace the 'src' attribute below with your direct video URL (e.g., walkthrough.mp4). ***
-                            Ensure you provide a direct link (e.g., from GitHub Pages or a CDN).
-                        -->
-                        <source src="https://github.com/sarathsanker25/sobha-insignia-landing-page/blob/30b05dfbb0e45d7b6f925865a7e6ad938a35534b/assets/SOBHA-Brand-Video-Audio_1.mp4" type="video/mp4">
-                        Your browser does not support the video tag. Please contact us for a private viewing.
-                    </video>
+                <!-- YouTube Video Embed (H7Peenn72V4) -->
+                <div class="mb-12 shadow-2xl rounded-xl overflow-hidden aspect-video-wrapper">
+                    <iframe 
+                        /* Note: Using /embed/ instead of watch?v= allows it to play directly. ?rel=0 helps to restrict related videos. */
+                        src="https://www.youtube.com/embed/H7Peenn72V4?rel=0" 
+                        title="SOBHA Infinia Walkthrough" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
 
-                <!-- Image Gallery Placeholder -->
+                <!-- Image Gallery -->
                 <h3 class="text-3xl font-bold text-gray-800 text-center mb-8 mt-16">Key Interior Renders</h3>
                 <div class="grid md:grid-cols-3 gap-6">
                     <!-- Image 1 -->
                     <div class="shadow-lg rounded-xl overflow-hidden transform hover:scale-[1.03] transition duration-300">
-                        <!-- *** PLACEHOLDER INSTRUCTION: Replace the 'src' attribute with your interior image link *** -->
-                        <img src="https://github.com/sarathsanker25/sobha-insignia-landing-page/blob/main/assets/SOBHA%20Infinia_BROCHURE_Web%20(1)-16.png" alt="Luxury Living Area" class="w-full h-auto object-cover">
+                        <img 
+                            src="uploaded:image_a09425.png-85c04261-49ba-4b06-8738-98bfaff0418a" 
+                            alt="Luxury Living Area" 
+                            class="w-full h-auto object-cover"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x600/10B981/ffffff?text=Image+1+Error';"
+                        >
                     </div>
                     <!-- Image 2 -->
                     <div class="shadow-lg rounded-xl overflow-hidden transform hover:scale-[1.03] transition duration-300">
-                        <!-- *** PLACEHOLDER INSTRUCTION: Replace the 'src' attribute with your bedroom image link *** -->
-                        <img src="https://github.com/sarathsanker25/sobha-insignia-landing-page/blob/main/assets/SOBHA%20Infinia_BROCHURE_Web%20(1)-18.png" alt="Master Bedroom" class="w-full h-auto object-cover">
+                        <img 
+                            src="uploaded:image_a09aed.png-61cda40e-45ba-43b7-b05f-357b989cc1e8" 
+                            alt="Master Bedroom" 
+                            class="w-full h-auto object-cover"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x600/EF4444/ffffff?text=Image+2+Error';"
+                        >
                     </div>
                     <!-- Image 3 -->
                     <div class="shadow-lg rounded-xl overflow-hidden transform hover:scale-[1.03] transition duration-300">
-                        <!-- *** PLACEHOLDER INSTRUCTION: Replace the 'src' attribute with your kitchen image link *** -->
-                        <img src="https://github.com/sarathsanker25/sobha-insignia-landing-page/blob/main/assets/SOBHA%20Infinia_BROCHURE_Web%20(1)-17.png" alt="Gourmet Kitchen" class="w-full h-auto object-cover">
+                        <img 
+                            src="uploaded:image_a09ee7.png-9a54a7f0-6f04-407c-acb5-4d02b8661c01" 
+                            alt="Gourmet Kitchen" 
+                            class="w-full h-auto object-cover"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x600/3B82F6/ffffff?text=Image+3+Error';"
+                        >
                     </div>
                 </div>
             </div>
