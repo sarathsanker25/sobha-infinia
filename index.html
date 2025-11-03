@@ -55,13 +55,15 @@
         .scroll-top-button {
             transition: opacity 0.3s ease;
         }
-        /* Aspect ratio container for the YouTube iframe (16:9) */
+        
+        /* Aspect ratio container for the video (16:9) */
         .aspect-video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 56.25%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
         }
-        .aspect-video-wrapper iframe {
+        .aspect-video-wrapper iframe,
+        .aspect-video-wrapper video {
             position: absolute;
             top: 0;
             left: 0;
@@ -83,10 +85,14 @@
     <header class="bg-zinc-800 shadow-xl sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <!-- H1 Tagline on the Left -->
-            <div class="text-2xl font-extrabold text-amber-400">SOBHA <span class="text-white">Infinia</span></div>
-            
-            <!-- Navigation Links (Hidden on Mobile) -->
-            <nav class="hidden md:flex space-x-8">
+<div class="flex items-center space-x-2">            
+<img 
+                    src="https://raw.githubusercontent.com/sarathsanker25/sobha-insignia-landing-page/refs/heads/main/assets/LOGO.png" 
+                    alt="SOBHA Infinia Logo" 
+                    class="h-10 w-auto"
+                    onerror="this.onerror=null; this.outerHTML='<span class=\'text-2xl font-bold tracking-tight text-white\'>SOBHA Infinia</span>';"
+                >
+            </div>            <nav class="hidden md:flex space-x-8">
                 <a href="#home" class="text-zinc-300 hover:text-amber-400 font-medium transition duration-150">Home</a>
                 <a href="#gallery" class="text-zinc-300 hover:text-amber-400 font-medium transition duration-150">Gallery</a>
                 <a href="#amenities" class="text-zinc-300 hover:text-amber-400 font-medium transition duration-150">Amenities</a>
@@ -203,16 +209,24 @@
                 <div class="max-w-7xl mx-auto">
                     <h2 class="text-4xl font-extrabold text-white text-center mb-12">Virtual Walkthrough & Project Gallery</h2>
                     
-                    <!-- YouTube Video Embed -->
+                    <!-- HTML5 VIDEO ELEMENT REPLACEMENT -->
                     <div class="mb-12 shadow-2xl rounded-xl overflow-hidden aspect-video-wrapper">
-                        <iframe 
-                            src="https://www.youtube.com/embed/H7Peenn72V4?rel=0" 
-                            title="SOBHA Infinia Walkthrough" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
+                        <video 
+                            id="projectVideo"
+                            controls 
+                            autoplay 
+                            muted
+                            loop
+                            class="w-full h-full object-cover"
+                            poster="https://placehold.co/1280x720/27272A/ffffff?text=Video+Loading+SOBHA+Infinia+Walkthrough">
+                            
+                            <!-- CORRECTED SRC URL BELOW: changed '-' to '_' -->
+                            <source src="https://raw.githubusercontent.com/sarathsanker25/sobha-insignia-landing-page/main/assets/SOBHA-Brand-Video-Audio_1.mp4" type="video/mp4">
+                            
+                            Your browser does not support the video tag. Please update your browser.
+                        </video>
                     </div>
+                    <!-- END HTML5 VIDEO ELEMENT -->
 
                     <!-- Image Gallery -->
                     <h3 class="text-3xl font-bold text-white text-center mb-8 mt-16">Key Interior Renders</h3>
