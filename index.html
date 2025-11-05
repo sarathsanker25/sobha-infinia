@@ -3,756 +3,462 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOBHA Insignia: Smart Luxury Living Near Bellandur</title>
-    
-    <!-- Load Tailwind CSS from CDN -->
+    <title>SOBHA Infinia - Premium Residences</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Load Inter Font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    
-    <!-- Favicon Placeholder -->
-    <link rel="icon" type="image/png" href="/favicon.png"> 
-
     <style>
-        /* --- PREMIUM DARK GRADIENT PALETTE --- */
+        /* Custom Tailwind config for premium dark colors and gold accent */
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary-base': '#141418', /* Deep Charcoal/Black Base */
-                        'surface-dark': '#1D1D23', /* Darker Surface for Cards/Sections */
-                        'surface-light': '#27272A', /* Lighter Surface for Headers/Hover */
-                        'accent-gold': '#FFC72C', /* Vibrant Gold (for flat hovers/focus) */
-                        'cta-text': '#141418', /* Text color (Dark) for contrast on light CTAs */
+                        'primary-dark': '#18181B', /* zinc-900 */
+                        'surface-dark': '#27272A', /* zinc-800 */
+                        'accent-gold': '#FACC15', /* amber-400 */
+                        'cta-green': '#059669', /* emerald-600 */
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    },
+                    animation: {
+                        fadeIn: 'fadeIn 1s ease-out',
+                        slideUp: 'slideUp 0.8s ease-out',
                     }
                 }
             }
         }
 
-        /* --- GRADIENT BODY BACKGROUND (Key for aesthetics) --- */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #141418;
-            background-image: radial-gradient(ellipse at top center, #1D1D23 0%, #141418 100%);
-            background-attachment: fixed;
-        }
-        
-        /* --- HERO STYLES --- */
-        .hero-content-wrapper {
-            position: relative;
-            z-index: 20;
-            padding-top: 4rem; 
-            padding-bottom: 4rem;
+            background-color: #18181B; /* Dark background */
+            color: #E4E4E7; /* Light text */
         }
 
-        /* --- CORE GRADIENT CSS --- */
-        .btn-gradient-gold {
-            background-image: linear-gradient(145deg, #FFC72C 0%, #E8A800 100%);
-            color: #141418;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 199, 44, 0.1);
-        }
-        .btn-gradient-gold:hover {
-            transform: scale(1.03);
-            box-shadow: 0 6px 20px rgba(255, 199, 44, 0.25);
-        }
-        .btn-ghost-gold {
-            background-color: transparent;
-            color: #FFC72C;
-            border: 2px solid #FFC72C;
-            transition: all 0.3s ease;
-        }
-        .btn-ghost-gold:hover {
-            background-color: #FFC72C;
-            color: #141418;
-            box-shadow: 0 0 15px rgba(255, 199, 44, 0.2);
-            transform: scale(1.03);
-        }
-        .text-gradient-gold {
-            background-image: linear-gradient(90deg, #FFC72C, #FAD961);
-            -webkit-background-clip: text;
-            -moz-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        /* Custom Arrow/Highlight for Select Dropdowns (Requested highlight for text) */
-        select.custom-arrow {
-            /* Ensures custom arrow is visible and points down */
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFC72C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1em;
-            /* Highlight the default text */
-            color: #FFC72C !important;
-            font-weight: 600;
-        }
-        select.custom-arrow option {
-             /* Make actual selections normal color */
-             color: white; 
-             font-weight: 400;
-        }
-        
-        /* --- Other Styles --- */
-        .scroll-top-button {
-            transition: opacity 0.3s ease;
-        }
-        .aspect-video-wrapper {
+        /* Hero image with dark overlay for readability */
+        .hero-background {
+            background-image: url('https://www.sobha.com/wp-content/uploads/2024/08/sobha-infinia.webp');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
             position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
         }
-        .aspect-video-wrapper iframe,
-        .aspect-video-wrapper video {
+
+        .hero-background::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(24, 24, 27, 0.4) 0%, rgba(24, 24, 27, 0.8) 70%, #18181B 100%);
+            z-index: 1;
         }
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
+
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #27272A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4B5563;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6B7280;
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" class="scroll-top-button btn-gradient-gold fixed bottom-4 right-4 text-cta-text p-3 rounded-full shadow-lg opacity-0 z-50" aria-label="Scroll to top">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-    </button>
-
-    <!-- Header/Navigation -->
-    <header class="bg-surface-light shadow-xl sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="flex items-center space-x-2">            
-                <!-- Logo Image (Placeholder fallback included for safety) -->
-                <img 
-                    src="https://raw.githubusercontent.com/sarathsanker25/sobha-insignia-landing-page/refs/heads/main/assets/LOGO.png" 
-                    alt="SOBHA Insignia Logo - Homepage" 
-                    class="h-10 w-auto"
-                    onerror="this.onerror=null; this.outerHTML='<span class=\'text-2xl font-bold tracking-tight text-gradient-gold\'>SOBHA Insignia</span>';"
-                >
+    <!-- Header & Navigation -->
+    <header class="bg-primary-dark fixed top-0 left-0 right-0 z-50 shadow-lg border-b border-surface-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <h1 class="text-xl font-bold text-accent-gold">
+                SOBHA <span class="text-white">INFINIA</span>
             </h1>
-            <nav class="hidden md:flex space-x-8" aria-label="Main Navigation">
-                <a href="#home" class="text-zinc-300 hover:text-accent-gold font-medium transition duration-150">Home</a>
-                <a href="#floor-pricing" class="text-zinc-300 hover:text-accent-gold font-medium transition duration-150">Plans & Pricing</a>
-                <a href="#location" class="text-zinc-300 hover:text-accent-gold font-medium transition duration-150">Location</a>
-                <a href="#contactFormWrapper" class="btn-gradient-gold text-cta-text px-4 py-2 rounded-lg font-medium transition duration-150 shadow-md lg:hidden">Enquire Now</a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#overview" class="text-gray-300 hover:text-accent-gold transition duration-300">Overview</a>
+                <a href="#exteriors" class="text-gray-300 hover:text-accent-gold transition duration-300">Exteriors</a>
+                <a href="#interiors" class="text-gray-300 hover:text-accent-gold transition duration-300">Interiors</a>
+                <a href="#amenities" class="text-gray-300 hover:text-accent-gold transition duration-300">Amenities</a>
+                <a href="#location" class="text-gray-300 hover:text-accent-gold transition duration-300">Location</a>
+                <a href="#enquire" class="text-white bg-cta-green px-3 py-1 rounded-lg hover:bg-emerald-700 transition duration-300">Enquire Now</a>
             </nav>
-            <button id="menuBtn" class="md:hidden text-zinc-300 hover:text-accent-gold" aria-expanded="false" aria-controls="mobileMenu">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
+            <!-- Mobile Menu Button (Hamburger) - Not implemented for full functionality to keep it a single file, but serves as a placeholder -->
+            <button class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
-        <nav id="mobileMenu" class="hidden md:hidden bg-surface-light border-t border-surface-dark" aria-label="Mobile Navigation">
-            <a href="#home" class="block px-4 py-2 text-white hover:bg-surface-dark">Home</a>
-            <a href="#floor-pricing" class="block px-4 py-2 text-white hover:bg-surface-dark">Plans & Pricing</a>
-            <a href="#location" class="block px-4 py-2 text-white hover:bg-surface-dark">Location</a>
-            <a href="#contactFormWrapper" class="block btn-gradient-gold text-cta-text m-4 rounded-lg text-center px-4 py-2">Enquire Now</a>
-        </nav>
     </header>
-    
-    <!-- Main Content Area -->
-    <div class="main-content-area">
-        <main>
-            <!-- ====== FULL-BLEED HERO SLIDER SECTION (Updated images per request 3) ====== -->
-            <section id="home" class="relative min-h-[85vh] flex items-center justify-start text-white overflow-hidden rounded-b-xl shadow-2xl">
-                
-                <!-- 1. Slider (as background) - Uses requested images -->
-                <figure id="hero-slider" class="absolute top-0 left-0 w-full h-full z-0" role="region" aria-label="Project Gallery">
-                    <!-- Slider Track -->
-                    <div id="slider-track" class="flex transition-transform duration-700 ease-in-out w-full h-full">
-                        <!-- Slide 1: Entrance Lobby (Requested Image) -->
-                        <div id="slide-1" class="min-w-full h-full" role="tabpanel" aria-label="Slide 1 of 2">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-entranceLobby.webp" 
-                                 alt="Grand Entrance Lobby of SOBHA Insignia" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        <!-- Slide 2: Pool View (Requested Image) -->
-                        <div id="slide-2" class="min-w-full h-full" role="tabpanel" aria-label="Slide 2 of 2">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/signia-pool.webp" 
-                                 alt="View of the luxurious swimming pool at SOBHA Insignia" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                </figure>
 
-                <!-- 2. Dark Overlay (for text readability) -->
-                <div class="absolute top-0 left-0 w-full h-full bg-primary-base/60 z-5"></div>
-
-                <!-- 3. Text Content (on top) -->
-                <div class="hero-content-wrapper relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div class="max-w-3xl text-left py-12"> <!-- Constrained width for readability -->
-                        <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight mb-6 lg:pr-10">
-                            SOBHA Insignia: <span class="text-gradient-gold">Smart Luxury Living</span>
-                        </h1>
-                        <p class="text-lg sm:text-xl font-light mb-8 max-w-xl text-zinc-300">
-                            A collection of premium 3, 3.5 & 4 BHK residences located in Bengaluru, Near Bellandur.
-                        </p>
-                        <!-- CTA for Download Brochure -->
-                        <div class="flex flex-col sm:flex-row justify-start gap-4 mt-8">
-                            <button onclick="openDownloadModal('Brochure', 'https://placeholder.com/brochure-url', 'BrochureDownload', false)"
-                                    class="btn-gradient-gold text-cta-text font-bold py-3 px-8 rounded-xl flex items-center justify-center">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                Download Brochure
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Slider Controls (on top) -->
-                <button id="slider-prev" aria-label="Previous image" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/30 hover:bg-black/50 p-2 rounded-full transition-colors">
-                    <svg class="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                </button>
-                <button id="slider-next" aria-label="Next image" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/30 hover:bg-black/50 p-2 rounded-full transition-colors">
-                    <svg class="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </button>
-                <div id="slider-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex space-x-2" role="tablist" aria-label="Image selection">
-                    <!-- Dots are generated by JavaScript -->
-                </div>
-
-            </section>
-            <!-- ====== END HERO SECTION ====== -->
-
-
-            <!-- SECTION: Floor Plans, Master Plan & Pricing CTAs -->
-            <section id="floor-pricing" class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-4xl font-extrabold text-white text-center mb-6">Explore Detailed Plans & Pricing</h2>
-                <p class="text-zinc-300 mb-10 max-w-3xl mx-auto">Access unit layouts, master layout, and transparent pricing information instantly by clicking the buttons below.</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-6">
-                    <!-- CTA for Floor Plan Download (Requires Unit Type Selection in Modal) -->
-                    <button onclick="openDownloadModal('Floor Plans', 'https://placeholder.com/floor-plans-url', 'FloorPlansDownload', true)" 
-                            class="btn-ghost-gold font-bold py-3 px-6 rounded-xl flex items-center justify-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        Select Floor Type
-                    </button>
-                    <!-- CTA for Master Plan -->
-                    <button onclick="openDownloadModal('Master Plan', 'https://placeholder.com/master-plan-url', 'MasterPlanDownload', false)" 
-                            class="btn-ghost-gold font-bold py-3 px-6 rounded-xl flex items-center justify-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                        Download Master Plan
-                    </button>
-                    <!-- CTA for Pricing -->
-                    <button onclick="openDownloadModal('Price Details', 'https://placeholder.com/price-details-url', 'PriceDetailsDownload', false)" 
-                            class="btn-ghost-gold font-bold py-3 px-6 rounded-xl flex items-center justify-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Download Pricing
-                    </button>
-                </div>
-            </section>
-
-            <!-- SECTION: Project Overview -->
-            <section id="project-overview" class="bg-surface-dark py-16 px-4 sm:px-6 lg:px-8">
-                 <div class="max-w-7xl mx-auto">
-                    <h2 class="text-4xl font-extrabold text-white text-center mb-12">Project Overview: Key Features</h2>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <!-- Overview Image 1: Elevation Day View -->
-                        <div class="shadow-lg rounded-xl overflow-hidden transform hover:scale-[1.03] transition duration-300">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-elevation-day.webp" 
-                                 alt="Facade View of SOBHA Insignia" 
-                                 class="w-full h-auto object-cover">
-                            <div class="p-4 bg-surface-light text-center"><p class="text-white font-semibold">Stunning Architecture</p></div>
-                        </div>
-                        <!-- Overview Image 2: Lobby View -->
-                        <div class="shadow-lg rounded-xl overflow-hidden transform hover:scale-[1.03] transition duration-300">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-entranceLobby.webp" 
-                                 alt="Grand Entrance Lobby" 
-                                 class="w-full h-auto object-cover">
-                            <div class="p-4 bg-surface-light text-center"><p class="text-white font-semibold">Grand Entrance Lobby</p></div>
-                        </div>
-                        <!-- Overview Image 3: Entrance Plaza View -->
-                        <div class="shadow-lg rounded-xl overflow-hidden transform hover:scale-[1.03] transition duration-300">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-Entrance Plaza-Lwebp" 
-                                 alt="Entrance Plaza" 
-                                 class="w-full h-auto object-cover">
-                            <div class="p-4 bg-surface-light text-center"><p class="text-white font-semibold">Signature Entrance Plaza</p></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION: Project Gallery & Video Walkthrough -->
-            <section id="media-gallery" class="bg-surface-dark py-16 px-4 sm:px-6 lg:px-8">
-                <div class="max-w-7xl mx-auto">
-                    <h2 class="text-4xl font-extrabold text-white text-center mb-12">Virtual Walkthrough & Media Gallery</h2>
-                    
-                    <figure class="mb-12 shadow-2xl rounded-xl overflow-hidden aspect-video-wrapper">
-                        <!-- Video Walkthrough URL -->
-                        <video 
-                            id="projectVideo"
-                            controls 
-                            autoplay 
-                            muted
-                            loop
-                            class="w-full h-full object-cover"
-                            poster="https://www.sobha.com/wp-content/uploads/2022/09/insignia-elevation-day.webp">
-                            <source src="https://www.sobha.com/wp-content/uploads/2023/09/SOBHA-Insignia-3-4-BHK-bespoke-luxury-homes-at-Bhoganahalli-Bengaluru.mp4" type="video/mp4">
-                            Your browser does not support the video tag. Please update your browser.
-                        </video>
-                        <figcaption class="sr-only">Official project walkthrough video for SOBHA Insignia.</figcaption>
-                    </figure>
-
-                    <h3 class="text-3xl font-bold text-white text-center mb-8 mt-16">Key Interior Renders</h3>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <!-- Interior Render 1: Living Room -->
-                        <figure class="shadow-lg rounded-xl overflow-hidden transform hover:scale-[1.03] transition duration-300">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-living-room.webp" 
-                                 alt="Luxury Living Area" 
-                                 class="w-full h-auto object-cover">
-                            <figcaption class="sr-only">Luxury Living Area interior render.</figcaption>
-                        </figure>
-                        <!-- Interior Render 2: Bed Room -->
-                        <figure class="shadow-lg rounded-xl overflow-hidden transform hover:scale-[1.03] transition duration-300">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-bed.webp" 
-                                 alt="Master Bedroom" 
-                                 class="w-full h-auto object-cover">
-                            <figcaption class="sr-only">Master Bedroom interior render.</figcaption>
-                        </figure>
-                        <!-- Interior Render 3: Bathroom -->
-                        <figure class="shadow-lg rounded-xl overflow-hidden transform hover:scale-[1.03] transition duration-300">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-bathroomv3.webp" 
-                                 alt="Gourmet Kitchen" 
-                                 class="w-full h-auto object-cover">
-                            <figcaption class="sr-only">Gourmet Kitchen interior render.</figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- SECTION: Project Highlights -->
-            <section id="project-highlights" class="bg-surface-light py-16 rounded-b-3xl shadow-inner">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 class="text-4xl font-extrabold text-white text-center mb-12">Design & Quality Highlights</h2>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-surface-dark p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-bed.webp" alt="High Quality Construction" class="w-full h-auto object-cover rounded-lg mb-4">
-                            <h3 class="text-xl font-semibold text-accent-gold mb-2">SOBHA Quality Assurance</h3>
-                            <p class="text-zinc-400">Superior construction standards and fit-outs.</p>
-                        </div>
-                        <div class="bg-surface-dark p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-living-room.webp" alt="Efficient Layout Design" class="w-full h-auto object-cover rounded-lg mb-4">
-                            <h3 class="text-xl font-semibold text-accent-gold mb-2">Optimized Floor Layouts</h3>
-                            <p class="text-zinc-400">Zero wastage space and maximum natural light.</p>
-                        </div>
-                        <div class="bg-surface-dark p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-                            <img src="https://www.sobha.com/wp-content/uploads/2022/09/insignia-balconyv3.webp" alt="Smart Home Technology" class="w-full h-auto object-cover rounded-lg mb-4">
-                            <h3 class="text-xl font-semibold text-accent-gold mb-2">Private Balcony Spaces</h3>
-                            <p class="text-zinc-400">Integrated automation and security features.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION: Location -->
-            <section id="location" class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-extrabold text-white text-center mb-12">Strategically Located Near Bellandur</h2>
-                <div class="bg-surface-dark p-8 rounded-xl shadow-lg">
-                    <p class="text-lg text-zinc-300 mb-6">
-                        SOBHA Insignia offers unmatched connectivity being situated right **Near Bellandur**, placing you minutes away from major IT hubs, premium educational institutions, and healthcare facilities.
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-background relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full animate-slideUp">
+                <div class="text-center md:text-left md:w-1/2">
+                    <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        SOBHA <span class="text-accent-gold">INFINIA</span>
+                    </h2>
+                    <p class="mt-4 text-xl text-gray-300 font-light">
+                        Luxury 3 & 4 BHK Residences at the heart of Koramangala, Bengaluru.
                     </p>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-2xl font-semibold text-gradient-gold mb-3">Key Connectivity Highlights:</h3>
-                            <ul class="space-y-3 text-zinc-300 list-disc list-inside">
-                                <li>Easy access to Outer Ring Road (ORR)</li>
-                                <li>Close proximity to Whitefield and Electronic City</li>
-                                <li>Direct access to Wipro Corporate Office and Embassy TechVillage</li>
-                                <li>Surrounded by top schools and hospitals</li>
-                            </ul>
-                        </div>
-                        <div class="h-64 bg-zinc-700 rounded-lg overflow-hidden shadow-inner">
-                            <!-- Google Maps Embed -->
-                            <iframe 
-                                title="Project Location Map"
-                                class="w-full h-full border-0"
-                                loading="lazy"
-                                allowfullscreen
-                                referrerpolicy="no-referrer-when-downgrade"
-                                src="https://maps.google.com/maps?q=SOBHA%20Infinia,%20Sarjapur-Marathahalli%20Road,%20Bengaluru&t=&z=14&ie=UTF8&iwloc=&output=embed">
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION: Contact/Enquiry -->
-            <section id="contactFormWrapper" class="bg-surface-light py-16 rounded-t-3xl text-white shadow-2xl">
-                <div class="max-w-lg mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 class="text-4xl font-extrabold mb-4">Book Your Site Visit</h2>
-                    <p class="text-xl font-light mb-8 text-zinc-300">
-                        Discover your future home. Fill out the form below and our sales team will contact you shortly.
+                    <p class="mt-2 text-md text-gray-400 italic">
+                        Possession Starts: June 2029 | RERA: PRM/KA/RERA/.../006956
                     </p>
-                    <div class="bg-surface-dark p-8 rounded-xl shadow-2xl text-white">
-                        <!-- IMPORTANT: Replace the action URL below with your actual Google Form Script URL if deploying -->
-                        <form id="mobileTabletContactForm" method="POST" action="https://script.google.com/macros/s/AKfycbz0mlBfIbsgBEub9_Jx6TL3F4osLUP3yg_gd95ACQNal66ak3CDmxcHZLg_n_r_J1O6/exec">
-                            <div class="space-y-4">
-                                <div class="relative">
-                                    <label for="mobile_name" class="sr-only">Full Name</label>
-                                    <input type="text" name="Name" id="mobile_name" placeholder="Full Name" required class="w-full px-4 py-3 border border-zinc-700 bg-surface-dark text-white rounded-lg focus:ring-accent-gold focus:border-accent-gold transition duration-150">
-                                </div>
-                                <div class="relative">
-                                    <label for="mobile_email" class="sr-only">Email Address</label>
-                                    <input type="email" name="Email" id="mobile_email" placeholder="Email Address" required class="w-full px-4 py-3 border border-zinc-700 bg-surface-dark text-white rounded-lg focus:ring-accent-gold focus:border-accent-gold transition duration-150">
-                                </div>
-                                <div class="relative">
-                                    <label for="mobile_phone" class="sr-only">Phone Number</label>
-                                    <input type="tel" name="Phone" id="mobile_phone" placeholder="Phone Number" required class="w-full px-4 py-3 border border-zinc-700 bg-surface-dark text-white rounded-lg focus:ring-accent-gold focus:border-accent-gold transition duration-150">
-                                </div>
-                                <!-- Unit Type Selection (Highlighted text as requested) -->
-                                <select name="UnitType" id="mobile_unittype" class="w-full px-4 py-3 border border-zinc-700 bg-surface-dark rounded-lg focus:ring-accent-gold focus:border-accent-gold transition duration-150 appearance-none custom-arrow">
-                                    <option value="">**Choose Your Type**</option>
-                                    <option value="3BHK">3 BHK Residences</option>
-                                    <option value="3.5BHK">3.5 BHK Residences</option>
-                                    <option value="4BHK">4 BHK Residences</option>
-                                </select>
-                                <input type="hidden" name="ActionType" value="MobileFormSubmit">
-                            </div>
-                            <button type="submit" class="w-full mt-6 btn-gradient-gold text-cta-text font-bold py-3 rounded-lg">
-                                SUBMIT ENQUIRY
-                            </button>
-                        </form>
-                        <div id="formMessage" class="mt-4 text-sm font-medium hidden"></div>
-                    </div>
+                    <a href="#enquire" class="mt-8 inline-block px-10 py-3 text-lg font-semibold rounded-xl text-primary-dark bg-accent-gold hover:bg-yellow-500 transition duration-300 shadow-xl transform hover:scale-[1.02]">
+                        Download Brochure
+                    </a>
+                    <a href="#video" class="mt-4 md:mt-8 md:ml-4 inline-block px-10 py-3 text-lg font-semibold rounded-xl text-white border-2 border-white hover:border-accent-gold hover:text-accent-gold transition duration-300 transform hover:scale-[1.02]">
+                        View Project Video
+                    </a>
                 </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="bg-primary-base text-white py-8">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="mb-4">
-                    <div class="text-xl font-bold mb-1 text-accent-gold">SOBHA Insignia</div>
-                    <p class="text-sm text-zinc-400">Near Bellandur, Bengaluru</p>
-                    <p class="text-xs text-zinc-500 mt-1">PRM/KA/RERA/1251/446/PR/030824/006956 | <a href="http://www.rera.karnataka.gov.in" target="_blank" class="hover:text-accent-gold">www.rera.karnataka.gov.in</a></p>
-                </div>
-                <p class="text-sm text-zinc-500">© 2025 SOBHA Developers. All rights reserved.</p>
             </div>
-        </footer>
-    </div>
-    <!-- END .main-content-area -->
+        </section>
 
-    <!-- Download Modal Structure (Completely client-side, using JS to toggle visibility) -->
-    <div id="downloadModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden p-4" aria-modal="true" role="dialog">
-        <div class="bg-surface-dark p-8 rounded-xl shadow-2xl max-w-sm w-full relative transform transition-all duration-300 scale-95 opacity-0 text-white" id="modalContent">
-            
-            <button onclick="closeDownloadModal()" class="absolute top-3 right-3 text-zinc-500 hover:text-accent-gold transition duration-150" aria-label="Close form">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <h3 id="modalTitle" class="text-2xl font-bold text-center mb-2 text-gradient-gold">Access Document</h3>
-            <p class="text-sm text-center text-zinc-400 mb-6">Please provide your details to instantly **download** the <span id="documentNamePlaceholder" class="font-semibold text-accent-gold">Document</span>.</p>
-
-            <!-- IMPORTANT: Replace the action URL below with your actual Google Form Script URL if deploying -->
-            <form id="downloadContactForm" method="POST" action="https://script.google.com/macros/s/AKfycbz0mlBfIbsgBEub9_Jx6TL3F4osLUP3yg_gd95ACQNal66ak3CDmxcHZLg_n_r_J1O6/exec">
-                <div class="space-y-4">
-                    <div class="relative">
-                        <label for="modal_name" class="sr-only">Full Name</label>
-                        <input type="text" name="Name" id="modal_name" placeholder="Full Name" required class="w-full px-4 py-3 border border-zinc-700 bg-surface-dark text-white rounded-lg focus:ring-accent-gold focus:border-accent-gold transition duration-150">
-                    </div>
-                    <div class="relative">
-                        <label for="modal_phone" class="sr-only">Phone Number</label>
-                        <input type="tel" name="Phone" id="modal_phone" placeholder="Phone Number" required class="w-full px-4 py-3 border border-zinc-700 bg-surface-dark text-white rounded-lg focus:ring-accent-gold focus:border-accent-gold transition duration-150">
-                    </div>
-                    
-                    <!-- Unit Type Selection for Floor Plans (Highlighted text as requested) -->
-                    <select name="UnitType" id="modal_unittype_download" class="w-full px-4 py-3 border border-zinc-700 bg-surface-dark rounded-lg focus:ring-accent-gold focus:border-accent-gold transition duration-150 appearance-none custom-arrow hidden">
-                        <option value="">**Choose Your Type**</option>
-                        <option value="3BHK">3 BHK Floor Plan</option>
-                        <option value="3.5BHK">3.5 BHK Floor Plan</option>
-                        <option value="4BHK">4 BHK Floor Plan</option>
-                    </select>
-
-                    <input type="hidden" name="ActionType" id="ActionType" value="">
-                    <input type="hidden" name="DownloadURL" id="DownloadURL" value="">
-                    <input type="hidden" name="Email" value="NotProvided"> 
+        <!-- Overview Section -->
+        <section id="overview" class="py-16 md:py-24 bg-primary-dark animate-fadeIn">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-4xl font-extrabold text-white">The Epitome of Sophistication</h2>
+                    <p class="mt-4 text-xl text-gray-400 max-w-3xl mx-auto">
+                        A harmonious blend of cutting-edge architecture and bespoke luxury, SOBHA Infinia offers residences that are a class apart. Experience the pinnacle of elevated living.
+                    </p>
                 </div>
-                <button type="submit" class="w-full mt-6 btn-gradient-gold text-cta-text font-bold py-3 rounded-lg">
-                    Submit & Download
-                </button>
-            </form>
-            <div id="downloadFormMessage" class="mt-4 text-sm font-medium hidden text-center"></div>
-        </div>
-    </div>
-    <!-- END Download Modal Structure -->
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div class="bg-surface-dark p-6 rounded-xl shadow-lg border border-gray-700">
+                        <p class="text-4xl font-bold text-accent-gold">3 & 4 BHK</p>
+                        <p class="mt-2 text-gray-300">Luxury Configurations</p>
+                    </div>
+                    <div class="bg-surface-dark p-6 rounded-xl shadow-lg border border-gray-700">
+                        <p class="text-4xl font-bold text-accent-gold">Koramangala</p>
+                        <p class="mt-2 text-gray-300">Prime Location</p>
+                    </div>
+                    <div class="bg-surface-dark p-6 rounded-xl shadow-lg border border-gray-700">
+                        <p class="text-4xl font-bold text-accent-gold">4.6 Acres</p>
+                        <p class="mt-2 text-gray-300">Sprawling Project Area</p>
+                    </div>
+                    <div class="bg-surface-dark p-6 rounded-xl shadow-lg border border-gray-700">
+                        <p class="text-4xl font-bold text-accent-gold">340+</p>
+                        <p class="mt-2 text-gray-300">Exclusive Units</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Exterior & Elevation Section -->
+        <section id="exteriors" class="py-16 md:py-24 bg-surface-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-extrabold text-white">Architectural Grandeur</h2>
+                    <p class="mt-2 text-gray-400">A look at the striking facade that defines the SOBHA Infinia landmark.</p>
+                </div>
+                <div class="bg-primary-dark p-4 sm:p-8 rounded-xl shadow-2xl">
+                    <img src="https://www.sobha.com/wp-content/uploads/2024/08/Night-Elevation.webp"
+                         alt="SOBHA Infinia Night Elevation"
+                         class="w-full h-auto object-cover rounded-lg shadow-xl transition-all duration-500 hover:scale-[1.01]"
+                         onerror="this.onerror=null;this.src='https://placehold.co/1200x600/27272A/E4E4E7?text=Night+Elevation+Image+Fallback';"
+                    />
+                    <div class="mt-6 text-center">
+                        <h3 class="text-2xl font-semibold text-accent-gold">Night Elevation</h3>
+                        <p class="text-gray-400">The sculpted architecture illuminates the Bengaluru skyline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interiors Section -->
+        <section id="interiors" class="py-16 md:py-24 bg-primary-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-extrabold text-white">Interiors Designed for Life</h2>
+                    <p class="mt-2 text-gray-400">Craftsmanship and luxurious finishes in every corner of your home.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Interior 1: Living Room -->
+                    <div class="bg-surface-dark rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-accent-gold/20">
+                        <img src="https://www.sobha.com/wp-content/uploads/2024/08/Livingroom.webp"
+                             alt="SOBHA Infinia Living Room"
+                             class="w-full h-64 object-cover transform transition-transform duration-500 hover:scale-105"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/27272A/E4E4E7?text=Living+Room+Fallback';"
+                        />
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-semibold text-white">Elegant Living Spaces</h3>
+                            <p class="text-gray-400 mt-1">Expansive, light-filled living areas.</p>
+                        </div>
+                    </div>
+                    <!-- Interior 2: Bedroom -->
+                    <div class="bg-surface-dark rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-accent-gold/20">
+                        <img src="https://www.sobha.com/wp-content/uploads/2024/08/Bedroom.webp"
+                             alt="SOBHA Infinia Bedroom"
+                             class="w-full h-64 object-cover transform transition-transform duration-500 hover:scale-105"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/27272A/E4E4E7?text=Bedroom+Fallback';"
+                        />
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-semibold text-white">Serene Master Bedroom</h3>
+                            <p class="text-gray-400 mt-1">Thoughtfully designed for utmost comfort.</p>
+                        </div>
+                    </div>
+                    <!-- Interior 3: Bathroom -->
+                    <div class="bg-surface-dark rounded-xl shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-accent-gold/20">
+                        <img src="https://www.sobha.com/wp-content/uploads/2024/08/bathroom.webp"
+                             alt="SOBHA Infinia Bathroom"
+                             class="w-full h-64 object-cover transform transition-transform duration-500 hover:scale-105"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/27272A/E4E4E7?text=Bathroom+Fallback';"
+                        />
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-semibold text-white">Premium Bathrooms</h3>
+                            <p class="text-gray-400 mt-1">High-end fittings and contemporary design.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Video Section -->
+        <section id="video" class="py-16 md:py-24 bg-surface-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-extrabold text-white">Watch the SOBHA Experience</h2>
+                    <p class="mt-2 text-gray-400">Discover the world of SOBHA and the vision behind Infinia.</p>
+                </div>
+                <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl">
+                    <!-- Note: Using the Brand Video as the project video, as a dedicated Infinia walkthrough was not provided in the CSV. -->
+                    <video controls class="w-full h-full object-cover">
+                        <source src="https://www.sobha.com/wp-content/uploads/2025/01/SOBHA-Brand-Video-Audio_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://www.sobha.com/wp-content/uploads/2024/08/SOBHA-Infinia-Brochure.pdf" target="_blank" class="mt-8 inline-block px-8 py-3 text-lg font-semibold rounded-xl text-primary-dark bg-accent-gold hover:bg-yellow-500 transition duration-300">
+                        Download Detailed e-Brochure
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Amenities Section -->
+        <section id="amenities" class="py-16 md:py-24 bg-primary-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-extrabold text-white">World-Class Amenities</h2>
+                    <p class="mt-2 text-gray-400">Amenities designed to elevate your everyday life at SOBHA Infinia.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Amenity 1: Firefly Atrium -->
+                    <div class="flex flex-col items-center text-center p-4 bg-surface-dark rounded-xl shadow-lg">
+                        <img src="https://www.sobha.com/wp-content/uploads/2024/08/Firefly-Atrium.webp"
+                             alt="Firefly Atrium"
+                             class="w-full h-32 object-cover rounded-lg mb-4"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x200/27272A/E4E4E7?text=Atrium';"
+                        />
+                        <p class="text-xl font-semibold text-accent-gold">Firefly Atrium</p>
+                        <p class="text-gray-400 text-sm">A serene, illuminated green space for unwinding.</p>
+                    </div>
+                    <!-- Amenity 2: The Cosmpolitan Club -->
+                    <div class="flex flex-col items-center text-center p-4 bg-surface-dark rounded-xl shadow-lg">
+                        <img src="https://www.sobha.com/wp-content/uploads/2024/08/The-Cosmpolitan-Club.webp"
+                             alt="The Cosmpolitan Club"
+                             class="w-full h-32 object-cover rounded-lg mb-4"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x200/27272A/E4E4E7?text=Club+House';"
+                        />
+                        <p class="text-xl font-semibold text-accent-gold">The Cosmpolitan Club</p>
+                        <p class="text-gray-400 text-sm">State-of-the-art facilities for recreation.</p>
+                    </div>
+                    <!-- Amenity 3: Swimming Pool -->
+                    <div class="flex flex-col items-center text-center p-4 bg-surface-dark rounded-xl shadow-lg">
+                        <img src="https://www.sobha.com/wp-content/uploads/2024/08/Pool.webp"
+                             alt="Swimming Pool"
+                             class="w-full h-32 object-cover rounded-lg mb-4"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x200/27272A/E4E4E7?text=Pool';"
+                        />
+                        <p class="text-xl font-semibold text-accent-gold">Infinity Pool</p>
+                        <p class="text-gray-400 text-sm">A relaxing retreat with stunning views.</p>
+                    </div>
+                    <!-- Amenity 4: Kids Room -->
+                    <div class="flex flex-col items-center text-center p-4 bg-surface-dark rounded-xl shadow-lg">
+                        <img src="https://www.sobha.com/wp-content/uploads/2024/08/Kidsroom.webp"
+                             alt="Kids Room"
+                             class="w-full h-32 object-cover rounded-lg mb-4"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x200/27272A/E4E4E7?text=Kids+Room';"
+                        />
+                        <p class="text-xl font-semibold text-accent-gold">Dedicated Kids Zone</p>
+                        <p class="text-gray-400 text-sm">Safe and engaging play areas for children.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="py-16 md:py-24 bg-surface-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-extrabold text-white">Strategically Located in Koramangala</h2>
+                    <p class="mt-2 text-gray-400">Enjoy connectivity and convenience at a premium address.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Location Text Box -->
+                    <div class="bg-primary-dark p-8 rounded-xl shadow-2xl border border-gray-700">
+                        <h3 class="text-2xl font-bold text-accent-gold mb-4">The Koramangala Advantage</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            SOBHA Infinia is located at **Sarjapur-Marathahalli Road, Jakkasandra Extension, Koramangala**, placing you at the nexus of South Bengaluru's major IT hubs, educational institutions, and finest dining and retail destinations.
+                        </p>
+                        <ul class="mt-6 space-y-3 text-gray-400">
+                            <li class="flex items-start"><svg class="w-5 h-5 text-cta-green mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 20s-8-8.5-8-14a8 8 0 0116 0c0 5.5-8 14-8 14zM10 8a3 3 0 100-6 3 3 0 000 6z"></path></svg>
+                                Proximity to IT Parks on ORR and Sarjapur Road.
+                            </li>
+                            <li class="flex items-start"><svg class="w-5 h-5 text-cta-green mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"></path></svg>
+                                Easy access to top-tier schools and hospitals.
+                            </li>
+                            <li class="flex items-start"><svg class="w-5 h-5 text-cta-green mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h8a1 1 0 100-2H6z"></path></svg>
+                                Excellent connectivity via arterial roads.
+                            </li>
+                        </ul>
+                        <a href="https://maps.app.goo.gl/gD98A9d3bXnS7bWGA" target="_blank" class="mt-6 inline-block text-accent-gold hover:text-white font-semibold underline transition duration-300">
+                            Open Location on Google Maps &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Location Map Placeholder (Using an iframe to embed a simple map or a placeholder) -->
+                    <div class="rounded-xl shadow-2xl overflow-hidden h-96">
+                         <!-- Placeholder image for map since actual embed/map is complex in a single file HTML -->
+                        <img src="https://placehold.co/800x600/27272A/E4E4E7?text=Map+View+of+Koramangala"
+                             alt="Location Map Placeholder"
+                             class="w-full h-full object-cover"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enquiry Form Section -->
+        <section id="enquire" class="py-16 md:py-24 bg-primary-dark border-t border-gray-700">
+            <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-extrabold text-white">Register for Exclusive Details</h2>
+                    <p class="mt-2 text-xl text-gray-400">Get floor plans, pricing, and a private site visit.</p>
+                </div>
+                <div class="bg-surface-dark p-8 md:p-10 rounded-xl shadow-2xl border border-gray-700">
+                    <form id="enquiry-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300">Full Name</label>
+                            <input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-2 bg-primary-dark border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:ring-accent-gold focus:border-accent-gold shadow-sm">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300">Email Address</label>
+                            <input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-2 bg-primary-dark border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:ring-accent-gold focus:border-accent-gold shadow-sm">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required class="mt-1 block w-full px-4 py-2 bg-primary-dark border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:ring-accent-gold focus:border-accent-gold shadow-sm">
+                        </div>
+                        <p class="text-xs text-gray-500">By submitting, you agree to receive communications from SOBHA.</p>
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-medium text-primary-dark bg-cta-green hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cta-green transition duration-300 transform hover:scale-[1.01]">
+                            Request Call Back & Details
+                        </button>
+                    </form>
+                    <div id="form-message" class="mt-4 text-center text-sm text-gray-500 hidden"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark border-t border-gray-700">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+            <p>&copy; 2024 SOBHA Infinia. All rights reserved. | RERA No.: PRM/KA/RERA/1251/446/PR/030824/006956</p>
+            <p class="mt-2">Address: Sarjapur-Marathahalli Road, Jakkasandra Extension, Koramangala, Bengaluru, Karnataka 560034</p>
+        </div>
+    </footer>
 
     <script>
-        // --- JavaScript for Interactions ---
-
-        // Mobile Menu Toggle
-        document.getElementById('menuBtn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-            const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
-            this.setAttribute('aria-expanded', !isExpanded);
-        });
-
-        // Scroll Top Button Logic
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.remove('opacity-0');
-            } else {
-                scrollToTopBtn.classList.add('opacity-0');
-            }
-        });
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // --- Hero Slider Logic (Optimized for 2 slides) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const sliderTrack = document.getElementById('slider-track');
-            if (!sliderTrack) return; 
-
-            const slides = Array.from(sliderTrack.children);
-            const nextButton = document.getElementById('slider-next');
-            const prevButton = document.getElementById('slider-prev');
-            const dotsContainer = document.getElementById('slider-dots');
-
-            let currentSlide = 0;
-            const slideCount = slides.length; // Expected 2
-
-            // Create dots
-            slides.forEach((slide, index) => {
-                const button = document.createElement('button');
-                button.setAttribute('role', 'tab');
-                button.setAttribute('aria-controls', slide.id);
-                button.setAttribute('aria-label', `Go to slide ${index + 1}`);
-                button.classList.add('w-3', 'h-3', 'rounded-full', 'transition-colors');
-                
-                if (index === 0) {
-                    button.classList.add('bg-accent-gold');
-                    button.setAttribute('aria-selected', 'true');
-                } else {
-                    button.classList.add('bg-white/50', 'hover:bg-white/75');
-                    button.setAttribute('aria-selected', 'false');
-                }
-
-                button.addEventListener('click', () => {
-                    goToSlide(index);
-                });
-                dotsContainer.appendChild(button);
-            });
-
-            const dots = Array.from(dotsContainer.children);
-
-            const goToSlide = (slideIndex) => {
-                // Circular navigation logic
-                if (slideIndex < 0) slideIndex = slideCount - 1;
-                if (slideIndex >= slideCount) slideIndex = 0;
-
-                currentSlide = slideIndex;
-
-                sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-                // Update dots
-                dots.forEach((dot, index) => {
-                    if (index === currentSlide) {
-                        dot.classList.add('bg-accent-gold');
-                        dot.classList.remove('bg-white/50', 'hover:bg-white/75');
-                        dot.setAttribute('aria-selected', 'true');
-                    } else {
-                        dot.classList.remove('bg-accent-gold');
-                        dot.classList.add('bg-white/50', 'hover:bg-white/75');
-                        dot.setAttribute('aria-selected', 'false');
+        // --- Custom Utility for API Calls with Exponential Backoff ---
+        // This utility simulates a real API submission and is modified to use a mock endpoint.
+        async function fetchWithRetry(url, options, retries = 3) {
+            let attempt = 0;
+            while (attempt < retries) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                });
-            };
-
-            nextButton.addEventListener('click', () => {
-                goToSlide(currentSlide + 1);
-            });
-
-            prevButton.addEventListener('click', () => {
-                goToSlide(currentSlide - 1);
-            });
-
-            // Auto-play
-            setInterval(() => {
-                goToSlide(currentSlide + 1);
-            }, 5000); 
-        });
-
-
-        // --- MODAL FUNCTIONS ---
-        /**
-         * Opens the download modal with dynamic content and optional unit type selection.
-         * @param {string} docName - The name of the document to be displayed in the modal.
-         * @param {string} downloadUrl - The URL of the document to download.
-         * @param {string} actionType - The value for the ActionType hidden field.
-         * @param {boolean} requiresUnitType - Flag to show the Unit Type select dropdown.
-         */
-        function openDownloadModal(docName, downloadUrl, actionType, requiresUnitType) {
-            const modal = document.getElementById('downloadModal');
-            const modalContent = document.getElementById('modalContent');
-            const unitTypeSelect = document.getElementById('modal_unittype_download');
-            
-            // Set dynamic text and hidden fields
-            document.getElementById('documentNamePlaceholder').textContent = docName;
-            document.getElementById('modalTitle').textContent = `Access ${docName}`;
-            document.getElementById('ActionType').value = actionType;
-            document.getElementById('DownloadURL').value = downloadUrl;
-            
-            // Handle Unit Type Select visibility for Floor Plans
-            if (requiresUnitType) {
-                unitTypeSelect.classList.remove('hidden');
-                unitTypeSelect.setAttribute('required', 'true');
-                unitTypeSelect.value = ""; // Reset to placeholder
-            } else {
-                unitTypeSelect.classList.add('hidden');
-                unitTypeSelect.removeAttribute('required');
-                unitTypeSelect.value = "NA"; 
-            }
-
-            modal.classList.remove('hidden');
-            modal.focus();
-            void modalContent.offsetWidth; 
-            modalContent.classList.remove('scale-95', 'opacity-0');
-            modalContent.classList.add('scale-100', 'opacity-100');
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        function closeDownloadModal() {
-            const modal = document.getElementById('downloadModal');
-            const modalContent = document.getElementById('modalContent');
-            
-            modalContent.classList.remove('scale-100', 'opacity-100');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-                document.getElementById('downloadContactForm').reset();
-                document.getElementById('downloadFormMessage').classList.add('hidden');
-                document.getElementById('downloadFormMessage').classList.remove('text-green-500', 'text-red-500');
-                // Ensure unit type selection is reset on close
-                document.getElementById('modal_unittype_download').classList.add('hidden');
-                document.getElementById('modal_unittype_download').removeAttribute('required');
-            }, 300);
-        }
-
-        document.getElementById('downloadModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeDownloadModal();
-            }
-        });
-
-        // --- FORM SUBMISSION HANDLERS ---
-
-        // Download Form Submission Handler
-        const downloadFormElement = document.getElementById('downloadContactForm');
-        if (downloadFormElement) {
-            downloadFormElement.addEventListener('submit', function (event) {
-                event.preventDefault(); 
-                const unitTypeSelect = document.getElementById('modal_unittype_download');
-                
-                // Custom validation for Floor Plan download (if visible)
-                if (!unitTypeSelect.classList.contains('hidden') && unitTypeSelect.value === "") {
-                    // Using custom message box instead of alert()
-                    const formMessage = document.getElementById('downloadFormMessage');
-                    formMessage.innerHTML = `<span class="font-bold text-accent-gold">Oops!</span> Please choose a Unit Type.`;
-                    formMessage.classList.remove('hidden', 'text-green-500');
-                    formMessage.classList.add('text-red-500');
-                    return;
+                    return response;
+                } catch (error) {
+                    attempt++;
+                    if (attempt >= retries) {
+                        throw error;
+                    }
+                    const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+                    await new Promise(resolve => setTimeout(resolve, delay));
                 }
+            }
+        }
 
-                const formMessage = document.getElementById('downloadFormMessage');
-                const nameInput = downloadFormElement.querySelector('input[name="Name"]').value;
-                const documentName = document.getElementById('documentNamePlaceholder').textContent;
-                const downloadUrl = document.getElementById('DownloadURL').value;
-                const formActionUrl = this.action; 
+        // --- Form Submission Logic ---
+        const form = document.getElementById('enquiry-form');
+        const formMessage = document.getElementById('form-message');
 
-                formMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
-                formMessage.classList.add('text-zinc-400');
-                formMessage.innerHTML = `Processing request for <span class="font-bold text-accent-gold">${documentName}</span>...`;
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
 
-                // Fetch logic to submit data and trigger download
-                fetch(formActionUrl, { method: 'POST', body: new FormData(this) })
-                .then(response => {
-                    if (response.ok) {
-                        formMessage.innerHTML = `Thank you, <span class="font-bold">${nameInput}</span>! **Downloading** the ${documentName} now.`;
-                        formMessage.classList.remove('text-zinc-400');
-                        formMessage.classList.add('text-green-500'); 
-                        
-                        // Trigger download in a new tab
-                        const tempLink = document.createElement('a');
-                        tempLink.href = downloadUrl;
-                        tempLink.target = '_blank'; 
-                        document.body.appendChild(tempLink);
-                        tempLink.click();
-                        document.body.removeChild(tempLink);
-                        
-                        setTimeout(closeDownloadModal, 2500);
-                    } else { throw new Error('Server returned non-OK status'); }
+                formMessage.classList.remove('hidden', 'text-red-600', 'text-cta-green');
+                formMessage.classList.add('text-gray-500');
+                formMessage.innerHTML = 'Submitting your request...';
+
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => { data[key] = value });
+
+                // Mock API endpoint for submission demonstration
+                // In a real application, this would be a secure backend endpoint.
+                const mockApiUrl = 'https://jsonplaceholder.typicode.com/posts';
+
+                fetchWithRetry(mockApiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
                 })
-                .catch(error => {
-                    console.error('Submission error:', error);
-                    formMessage.innerHTML = `Error: Could not submit data. Please try again or refresh the page.`;
-                    formMessage.classList.remove('text-zinc-400');
-                    formMessage.classList.add('text-red-500'); 
-                });
-            });
-        }
-        
-        // Mobile/Tablet Form Submission Handler
-        const formElement = document.getElementById('mobileTabletContactForm');
-        if (formElement) {
-            formElement.addEventListener('submit', function (event) {
-                event.preventDefault(); 
-                const formMessage = document.getElementById('formMessage');
-                const formActionUrl = this.action;
-                const nameInput = formElement.querySelector('input[name="Name"]').value;
-                const unitInput = formElement.querySelector('select[name="UnitType"]').value;
-                
-                // Client-side validation for main form
-                if (unitInput === "") {
-                    formMessage.innerHTML = `<span class="font-bold text-accent-gold">Please select a Unit Type.</span>`;
-                    formMessage.classList.remove('hidden', 'text-green-500');
-                    formMessage.classList.add('text-red-500');
-                    setTimeout(() => { formMessage.classList.add('hidden'); }, 3000);
-                    return;
-                }
-
-                formMessage.innerHTML = `Submitting your request...`;
-                formMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
-                formMessage.classList.add('text-zinc-400');
-
-                // Fetch logic for standard form submission
-                fetch(formActionUrl, { method: 'POST', body: new FormData(this) })
-                .then(response => {
-                    if (response.ok) {
-                        formMessage.innerHTML = `Thank you, <span class="font-bold">${nameInput}</span>! Your enquiry for the ${unitInput || 'selected'} unit type has been successfully submitted. We'll be in touch soon.`;
-                        formMessage.classList.remove('text-zinc-400');
-                        formMessage.classList.add('text-green-500');
-                        formElement.reset();
-                    } else { throw new Error('Server returned non-OK status'); }
+                .then(response => response.json())
+                .then(result => {
+                    // Check if the mock submission was successful (status 201 created for POST)
+                    if (result && result.id) {
+                        formMessage.innerHTML = 'Thank you! Your request has been successfully submitted. We will contact you shortly.';
+                        formMessage.classList.remove('text-gray-500');
+                        formMessage.classList.add('text-cta-green');
+                        form.reset();
+                    } else {
+                        throw new Error('Server returned non-OK status');
+                    }
                 })
                 .catch(error => {
                     console.error('Submission error:', error);
                     formMessage.innerHTML = `Error: Submission failed. Please try again.`;
-                    formMessage.classList.remove('text-zinc-400');
-                    formMessage.classList.add('text-red-500');
+                    formMessage.classList.remove('text-gray-500');
+                    formMessage.classList.add('text-red-600');
                 })
                 .finally(() => {
                     setTimeout(() => { formMessage.classList.add('hidden'); }, 5000);
                 });
             });
         }
-        
+
         // --- Smooth scrolling for navigation links ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -760,7 +466,7 @@
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    const headerOffset = 70; 
+                    const headerOffset = 70; // Height of fixed header
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
