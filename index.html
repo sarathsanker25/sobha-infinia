@@ -154,9 +154,6 @@
                             <button onclick="openLeadModal('Download Brochure')" class="px-8 py-3 text-lg font-semibold rounded-xl text-white bg-cta-green hover:bg-cta-green-dark transition duration-300 shadow-xl transform hover:scale-[1.02]">
                                 Download Brochure
                             </button>
-                            <button onclick="openLeadModal('Download Cost Sheet')" class="px-8 py-3 text-lg font-semibold rounded-xl text-white bg-cta-green hover:bg-cta-green-dark transition duration-300 shadow-xl transform hover:scale-[1.02]">
-                                Download Cost Sheet
-                            </button>
                         </div>
                     </div>
 
@@ -185,7 +182,7 @@
                             <input type="hidden" name="Email" value="site-visit@request.com">
 
                             <!-- MODIFIED: CTA button is now green -->
-                            <button type="submit" id="heroVisitSubmitBtn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-cta-green hover:bg-cta-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cta-green transition duration-300 transform hover:scale-[1.01]">
+                            <button type="submit" id="heroVisitSubmitBtn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-xl text-lg font-semibold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-emerald-400 focus:ring-opacity-70 transition duration-300 transform hover:translate-y-[-2px] hover:shadow-2xl">
                                 Book My Visit
                             </button>
                         </form>
@@ -249,7 +246,7 @@
                         <input type="hidden" name="ActionType" value="Cost Sheet Request">
                         <input type="hidden" name="Email" value="cost-sheet@request.com">
 
-                        <button type="submit" id="costSheetSubmitBtn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-cta-green hover:bg-cta-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cta-green transition duration-300 transform hover:scale-[1.01]">
+                        <button type="submit" id="costSheetSubmitBtn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-xl text-lg font-semibold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-emerald-400 focus:ring-opacity-70 transition duration-300 transform hover:translate-y-[-2px] hover:shadow-2xl">
                             Request Cost Sheet
                         </button>
                     </form>
@@ -518,7 +515,7 @@
                         
                         <input type="hidden" name="ActionType" value="Other Project Enquiry">
 
-                        <button type="submit" id="otherProjectSubmitBtn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-cta-green hover:bg-cta-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cta-green transition duration-300 transform hover:scale-[1.01]">
+                        <button type="submit" id="otherProjectSubmitBtn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-xl text-lg font-semibold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-emerald-400 focus:ring-opacity-70 transition duration-300 transform hover:translate-y-[-2px] hover:shadow-2xl">
                             Submit Enquiry
                         </button>
                     </form>
@@ -639,20 +636,20 @@
                         
                         // Brochure Download
                         if (actionType.includes('Brochure')) {
-                            window.open('https://www.sobha.com/wp-content/uploads/2024/08/SOBHA-Infinia-Brochure.pdf', '_blank');
+                            window.open('https://raw.githubusercontent.com/sarathsanker25/sobha-infinia/1b68e78e0d5573074b669508cd93d0491f24d1e4/assets/SOBHA-Infinia-Brochure_C.pdf', '_blank');
                         }
                         // Floor Plan Download
                         if (actionType.includes('Floor Plan')) {
-                            window.open('https://www.sobha.com/wp-content/uploads/2024/08/SOBHA_Infinia_Floorplan.pdf', '_blank');
+                            window.open('https://raw.githubusercontent.com/sarathsanker25/sobha-infinia/a7223e3ec9c7ea79a285f0baaf6d914e8971ef1a/assets/SOBHA_Infinia_Floorplan.pdf', '_blank');
                         }
                         // Master Plan Download
                         if (actionType.includes('Master Plan')) {
-                            window.open('https://www.sobha.com/wp-content/uploads/2024/08/SOBHA_Infinia_Masterplan.pdf', '_blank');
+                            window.open('https://raw.githubusercontent.com/sarathsanker25/sobha-infinia/a7223e3ec9c7ea79a285f0baaf6d914e8971ef1a/assets/SOBHA_Infinia_Masterplan.pdf', '_blank');
                         }
                         // Cost Sheet Download (Using placeholder as no link was provided)
                         if (actionType.includes('Cost Sheet')) {
                             // ⚠️ Replace with your actual Cost Sheet URL when available
-                            window.open('https://placehold.co/1mb/pdf?text=Your+Cost+Sheet+PDF+Here', '_blank');
+                            window.open('https://raw.githubusercontent.com/sarathsanker25/sobha-infinia/b1acea8fa58dcb400ed140b1df8184d660bfbb05/assets/Infinia%20Pricing.pdf', '_blank');
                         }
                         
                         setTimeout(closeLeadModal, 2000);
